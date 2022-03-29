@@ -1,11 +1,25 @@
-import tkinter as tk
-win = tk.Tk()
+from tkinter import Tk, Button, RAISED
+from tkinter.messagebox import showinfo
 
-def changetext():
-    a.config(text="changed text!")
+root = Tk()
+root.title('Phone')
 
-a = tk.Label(win, text="hello world")
-a.pack()
-tk.Button(win, text="Change Label Text", command=changetext).pack()
+labels = [['1', '2', '3'],
+          ['4', '5', '6'],
+          ['7', '8', '9'],
+          ['*', '0', '#']]
+for r in range(4):
+    for c in range(3):
 
-win.mainloop()
+        def handler(x=labels[r][c]):
+            showinfo(message=x)
+
+        button = Button(root,
+                        relief=RAISED,
+                        padx=10,
+                        text=labels[r][c],
+                        command=handler)
+
+        button.grid(row=r, column=c)
+
+root.mainloop()
